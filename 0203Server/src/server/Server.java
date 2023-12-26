@@ -151,14 +151,23 @@ public class Server extends Thread{
         // poredi da li je posiljalacki email jednak posiljalackom emailu koji se nalazi u poruci, i da je pritom primalacki email jednak primalackom emailu koji se nalazi u poruci
         // ILI 
         // da je da li je posiljalacki email jednak posiljalackom emailu koji se nalazi u poruci, a da je pritom primalac jednak null (tj. salje se svima).
-        for(Poruka poruka : poruke){
-            if(
-                    (posiljalac.getEmail().equals(poruka.getPosaljilac().getEmail())&&primalac.getEmail().equals(poruka.getPrimalac().getEmail()))
-                    ||
-                    (poruka.getPosaljilac().getEmail().equals(poruka.getPosaljilac().getEmail())&&poruka.getPrimalac()==null)
-                    ) //najjace
-            {
-                porukeOdKorisnika.add(poruka);
+//        for(Poruka poruka : poruke){
+//            if((posiljalac.getEmail().equals(poruka.getPosaljilac().getEmail())&&poruka.getPrimalac()==null)){
+//                porukeOdKorisnika.add(poruka);
+//            } 
+//            else if (posiljalac.getEmail().equals(poruka.getPosaljilac().getEmail())
+//                    &&
+//                    primalac.getEmail().equals(poruka.getPrimalac().getEmail())){
+//                porukeOdKorisnika.add(poruka);
+//            }else{
+//                
+//            }   
+//        }
+        for (Poruka poruka : poruke) {
+            if (posiljalac.getEmail().equals(poruka.getPosaljilac().getEmail())) {
+                if (poruka.getPrimalac() == null || (primalac != null && primalac.getEmail().equals(poruka.getPrimalac().getEmail()))) {
+                    porukeOdKorisnika.add(poruka);
+                }
             }
         }
         // i onda trazi onog ko je zahtevao, tj. primaoca
