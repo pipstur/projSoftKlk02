@@ -21,6 +21,10 @@ Slanje specificnom korisniku:
 
 ![image](https://github.com/pipstur/projektovanjeSoftveraKlk02/assets/95634547/428d3043-fb49-4370-a4a8-c79db1fa839b)
 
-Prikaz poruka od specificnog korisnika (k2 selektovao k1)
+Prikaz poruka od specificnog korisnika (k2 selektovao k1):
 
 ![image](https://github.com/pipstur/projektovanjeSoftveraKlk02/assets/95634547/d4a5118f-3f2b-4b95-aa43-ad2bf459c988)
+
+Prikaz svih poruka sa serverske strane:
+
+![image](https://github.com/pipstur/projektovanjeSoftveraKlk02/assets/95634547/e8d19920-3c14-4f96-a671-b64a96d1d97e)
