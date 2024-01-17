@@ -61,11 +61,10 @@ public class Server extends Thread{
         // interruptuje se thread
         interrupt();
         try {
-            // interruptuju se svi clientThread-ovi i zatvaraju im se socketi
+            // interruptuju se svi clientThread-ovi i zatvaraju im se socketi i salje se obavestenje o tome
             for (ClientThread clientThread : clientThreads) {
                 if(clientThread!=null&&clientThread.isAlive()){
-                    clientThread.socket.close();
-                    clientThread.interrupt();
+                    clientThread.serverStop();
                     System.out.println("Ugasen korisnik: "+clientThread.user.getEmail());
                 }
                     

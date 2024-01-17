@@ -35,7 +35,7 @@ public class FrmKlijentMain extends javax.swing.JFrame {
         // startuje se nit koja prima requestove koje server salje, ovo je neophodno da bi aplikacija radila u realtime-u 
         // tj. da bi poruke pristizale kako se salju
         try {
-            Client klijent = new Client(user,Controller.getInstance().socket,txtChat, cbLoginovani);
+            Client klijent = new Client(user,Controller.getInstance().socket,txtChat, cbLoginovani, this);
             klijent.start();
         } catch (Exception ex) {
             Logger.getLogger(FrmKlijentMain.class.getName()).log(Level.SEVERE, null, ex);

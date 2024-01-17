@@ -14,5 +14,6 @@ public enum Operation {
     LOGIN,
     SEND_MESSAGE,
     GET_ONLINE_USERS,
-    GET_ALL_FROM_USER
+    GET_ALL_FROM_USER,
+    SERVER_CLOSED
 }

@@ -11,6 +11,7 @@ import communication.Response;
 import communication.Sender;
 import domain.Poruka;
 import domain.User;
+import java.io.IOException;
 import java.net.Socket;
 import java.util.List;
 import java.util.logging.Level;
@@ -75,7 +76,9 @@ public class ClientThread extends Thread{
                 }
                 sender.send(response);
             } catch (Exception ex) {
-                Logger.getLogger(ClientThread.class.getName()).log(Level.SEVERE, null, ex);
+                
+                if(!isInterrupted())
+                    Logger.getLogger(ClientThread.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -95,6 +98,14 @@ public class ClientThread extends Thread{
     void getAllFromUser(List<Poruka> porukeOdKorisnika)throws Exception {
         Request request = new Request(Operation.GET_ALL_FROM_USER, porukeOdKorisnika);
         sender.send(request);
+    }
+
+    void serverStop() throws IOException {
+        Request request = new Request(Operation.SERVER_CLOSED, "");
+        sender.send(request);
+        interrupt();
+        socket.close();
+        
     }
     
     

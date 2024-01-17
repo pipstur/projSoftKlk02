@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
 /**
@@ -29,14 +30,18 @@ public class Client extends  Thread {
     Receiver receiver;
     public JTextArea txtChat;
     public JComboBox cbLoginovani;
+    public JFrame frmKlijent;
 
-    public Client(User user, Socket socket, JTextArea txtChat, JComboBox cbLoginovani) {
+    public Client(User user, Socket socket, JTextArea txtChat, JComboBox cbLoginovani, JFrame frmKlijent) {
         this.user = user;
         this.socket = socket;
         this.txtChat = txtChat;
         this.cbLoginovani = cbLoginovani;
+        this.frmKlijent = frmKlijent;
+        
         sender = new Sender(socket);
         receiver = new Receiver(socket);
+        
     }
     
     
@@ -71,11 +76,17 @@ public class Client extends  Thread {
                         }
                         txtChat.setText(tekstOdKorisnika);
                         continue;
+                    case SERVER_CLOSED:
+                        socket.close();
+                        frmKlijent.dispose();
+                        this.interrupt();
+                        continue;
                 }
                 
                 sender.send(response);
             } catch (Exception ex) {
-                Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+                if(!isInterrupted())
+                    Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
